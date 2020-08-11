@@ -1,0 +1,27 @@
+package jrJava.alienInvader5_polymorphism;
+
+import java.awt.Image;
+
+public class NastyAlien extends Alien{
+
+	public NastyAlien(int x, int y, int vx, int vy, Image image, Image imageAlt, Ship target) {
+		super(x, y, vx, vy, image, imageAlt, target);
+	}
+	
+	public void move(){ 
+		
+		x = (int) (0.98*x + 0.02*target.getX());
+		
+		y += vy;
+		
+		if(y>720) AlienManager.remove(this); 
+		
+		if(x<0+width/2 || x>800-width/2) vx *= -1;
+		
+		shootMissile();
+	
+		isCollided = target.isHit(this);
+	}
+	
+
+}
